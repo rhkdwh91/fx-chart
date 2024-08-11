@@ -1,6 +1,6 @@
 {
   "name": "fx-chart",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "keywords": [
     "react",
@@ -26,8 +26,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "sideEffects": true,
   "scripts": {
