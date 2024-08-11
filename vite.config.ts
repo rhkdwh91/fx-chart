@@ -4,7 +4,7 @@ import dts from "vite-plugin-dts";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts()],
+  plugins: [react(), dts({ insertTypesEntry: true })],
   build: {
     lib: {
       entry: "src/index.ts",
@@ -15,6 +15,7 @@ export default defineConfig({
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },

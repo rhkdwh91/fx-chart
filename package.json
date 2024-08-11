@@ -1,6 +1,6 @@
 {
   "name": "fx-chart",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "keywords": [
     "react",
@@ -11,12 +11,16 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
-  "main": "dist/index.ts",
+  "main": "dist/fx-chart.js",
+  "module": "dist/fx-chart.js",
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": "./dist/fx-chart.js",
+      "require": "./dist/fx-chart.umd.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "types": "./dist/lib.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rhkdwh91/fx-chart.git"
@@ -36,13 +40,14 @@
   },
   "dependencies": {
     "d3": "^7.9.0",
-    "react": "^18.3.1"
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@types/d3": "^7.4.3",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.8.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
