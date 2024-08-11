@@ -11,13 +11,16 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
-  "main": "dist/index.ts",
-  "module": "dist/index.ts",
+  "main": "dist/fx-chart.js",
+  "module": "dist/fx-chart.js",
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": "./dist/fx-chart.js",
+      "require": "./dist/fx-chart.umd.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "types": "./dist/lib.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rhkdwh91/fx-chart.git"

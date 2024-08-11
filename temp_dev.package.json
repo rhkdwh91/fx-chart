@@ -11,11 +11,11 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
-  "main": "dist/index.ts",
-  "module": "dist/index.ts",
+  "main": "dist/fx-chart.js",
+  "module": "dist/fx-chart.js",
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": "./src/index.js"
     }
   },
   "repository": {
