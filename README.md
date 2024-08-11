@@ -32,11 +32,11 @@ export default function App() {
         <div>
             <Bar
                 data={[
-                    { name: "H1", value: 1 },
-                    { name: "H2", value: 2 },
-                    { name: "H3", value: 2 },
-                    { name: "H4", value: 2 },
-                    { name: "H5", value: 2 },
+                    { key: "H1", value: 1 },
+                    { key: "H2", value: 2 },
+                    { key: "H3", value: 2 },
+                    { key: "H4", value: 2 },
+                    { key: "H5", value: 2 },
                 ]}
             />
         </div>
@@ -47,7 +47,7 @@ export default function App() {
 
 ## API 문서
 
-자세한 API 문서는 [여기](https://klog.pe.kr)에서 확인할 수 있습니다.
+자세한 API 문서는 [여기](https://fx-chart.vercel.app/)에서 확인할 수 있습니다.
 
 ## 기여하기
 
