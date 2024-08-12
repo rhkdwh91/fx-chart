@@ -11,8 +11,8 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
-  "main": "dist/index.ts",
-  "module": "dist/index.ts",
+  "main": "build/dist/index.ts",
+  "module": "build/dist/index.ts",
   "exports": {
     ".": {
       "import": "./src/index.ts"
@@ -27,7 +27,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "build/dist"
   ],
   "sideEffects": true,
   "scripts": {

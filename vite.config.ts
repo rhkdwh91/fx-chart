@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [react(), dts({ insertTypesEntry: true })],
   build: {
+    outDir: "build/dist/",
     lib: {
       entry: "src/index.ts",
       name: "fx-chart",
