@@ -90,6 +90,40 @@ export default function Bar({ data }: I_BarProps) {
       .attr("height", (d) => height - yScale(d.value))
       .attr("fill", "#e5e7eb")
       .attr("ry", 10);
+
+    // 범례 추가
+    const legend = svg
+      .append("g")
+      .attr("class", "legend")
+      .attr(
+        "transform",
+        `translate(${width + margin.left + 10}, ${margin.top})`,
+      );
+
+    // 색상 스케일 설정
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    legend
+      .selectAll(".legend-item")
+      .data(data)
+      .enter()
+      .append("g")
+      .attr("class", "legend-item")
+      .attr("transform", (_d, i) => `translate(0, ${i * 20})`)
+      .each(function (d) {
+        const g = d3.select(this);
+        g.append("rect")
+          .attr("width", 10)
+          .attr("height", 10)
+          .attr("fill", colorScale(d.key) as string);
+        g.append("text")
+          .attr("x", 15)
+          .attr("y", 10)
+          .attr("fill", "white")
+          .text(d.key)
+          .style("font-size", "12px")
+          .attr("alignment-baseline", "middle");
+      });
   }, [data, dimensions]);
 
   return (
