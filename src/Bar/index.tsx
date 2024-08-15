@@ -88,8 +88,13 @@ export default function Bar({ data }: I_BarProps) {
       .append("rect")
       .attr("class", "bar")
       .attr("x", (d) => xScale(d.key) as number)
-      .attr("y", (d) => yScale(d.value))
       .attr("width", xScale.bandwidth())
+      .attr("y", height) // 처음에는 바닥에서 시작
+      .attr("height", 0) // 초기 높이를 0으로 설정
+      .transition()
+      .duration(1000)
+      .ease(d3.easeLinear)
+      .attr("y", (d) => yScale(d.value))
       .attr("height", (d) => height - yScale(d.value))
       .attr("fill", (d) => colorScale(d.key) as string);
 
