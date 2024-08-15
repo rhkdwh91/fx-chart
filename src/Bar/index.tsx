@@ -35,7 +35,7 @@ export default function Bar({ data }: I_BarProps) {
 
     const margin = {
       top: dimensions.height * 0.05,
-      right: dimensions.width * 0.1,
+      right: dimensions.width * 0.2,
       bottom: dimensions.height * 0.1,
       left: dimensions.width * 0.1,
     };
