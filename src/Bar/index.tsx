@@ -54,6 +54,9 @@ export default function Bar({ data }: I_BarProps) {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // 색상 스케일 설정
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
     // xScale 설정
     const xScale = d3
       .scaleBand()
@@ -88,8 +91,7 @@ export default function Bar({ data }: I_BarProps) {
       .attr("y", (d) => yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("height", (d) => height - yScale(d.value))
-      .attr("fill", "#e5e7eb")
-      .attr("ry", 10);
+      .attr("fill", (d) => colorScale(d.key) as string);
 
     // 범례 추가
     const legend = svg
@@ -99,9 +101,6 @@ export default function Bar({ data }: I_BarProps) {
         "transform",
         `translate(${width + margin.left + 10}, ${margin.top})`,
       );
-
-    // 색상 스케일 설정
-    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
     legend
       .selectAll(".legend-item")
@@ -115,10 +114,12 @@ export default function Bar({ data }: I_BarProps) {
         g.append("rect")
           .attr("width", 10)
           .attr("height", 10)
+          .attr("rx", 10)
+          .attr("ry", 10)
           .attr("fill", colorScale(d.key) as string);
         g.append("text")
           .attr("x", 15)
-          .attr("y", 10)
+          .attr("y", 6)
           .attr("fill", "white")
           .text(d.key)
           .style("font-size", "12px")
