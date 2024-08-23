@@ -71,17 +71,71 @@ export default function Bar({ data }: I_BarProps) {
       .range([height, 0])
       .nice();
 
+    // 클리핑 패스 추가
+    svg
+      .append("defs")
+      .append("clipPath")
+      .attr("id", "clip")
+      .append("rect")
+      .attr("width", width)
+      .attr("height", height);
+
+    // 줌 기능 추가
+    const zoom = d3
+      .zoom()
+      .scaleExtent([1, 8])
+      .extent([
+        [0, 0],
+        [width, height],
+      ])
+      .on("zoom", zoomed);
+
+    svg.call(zoom as any);
+
+    function zoomed(event: d3.D3ZoomEvent<SVGSVGElement, unknown>) {
+      const newXScale = d3
+        .scaleBand()
+        .domain(data.map((d) => d.key))
+        .range([0, width * event.transform.k])
+        .padding(0.3);
+
+      const newYScale = event.transform.rescaleY(yScale);
+
+      // x 축 업데이트
+      chart
+        .select(".x-axis")
+        .attr("transform", `translate(${event.transform.x},${height})`)
+        .call(d3.axisBottom(newXScale) as any);
+
+      // y 축 업데이트
+      chart
+        .select(".y-axis")
+        .attr("transform", `translate(${event.transform.x},0)`)
+        .call(d3.axisLeft(newYScale) as any);
+
+      // 막대 업데이트
+      chart
+        .selectAll(".bar")
+        .attr("x", (d: any) => (newXScale(d.key) as number) + event.transform.x)
+        .attr("width", newXScale.bandwidth())
+        .attr("y", (d: any) => newYScale(d.value))
+        .attr("height", (d: any) => height - newYScale(d.value));
+    }
+
     // x 축 렌더링
     chart
       .append("g")
+      .attr("class", "x-axis")
       .attr("transform", `translate(0,${height})`)
       .call(d3.axisBottom(xScale));
 
     // y 축 렌더링
-    chart.append("g").call(d3.axisLeft(yScale));
+    chart.append("g").attr("class", "y-axis").call(d3.axisLeft(yScale));
 
     // bar 그리기
     chart
+      .append("g")
+      .attr("clip-path", "url(#clip)")
       .selectAll(".bar")
       .data(data)
       .enter()
